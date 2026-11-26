@@ -40,7 +40,39 @@ while running:
                 snake_dir = [-CELL_SIZE, 0]
             elif event.key == pygame.K_RIGHT and snake_dir[0] == 0:
                 snake_dir = [CELL_SIZE, 0]
+                
+    # 2. Логика движения змейки
+    # Создаем новую голову на основе старой и текущего направления
+    new_head = [snake[0][0] + snake_dir[0], snake[0][1] + snake_dir[1]]
+    
+    if snake[0] in snake[1:]:
+        running = False
+    
+    # Если координата X меньше 0 ИЛИ больше ширины экрана, 
+    # ИЛИ координата Y меньше 0 ИЛИ больше высоты экрана
+    if snake[0][0] < 0 or snake[0][0] >= WIDTH or snake[0][1] < 0 or snake[0][1] >= HEIGHT:
+        running = False
+        
+    # Добавляем новую голову в начало списка
+    if running:
+        snake.insert(0, new_head)
 
+    # Проверяем, съела ли змейка еду
+    if snake[0] == food:
+        score += 1
+        # Если съела, генерируем новую еду в случайных координатах сетки
+        food = [
+            random.randrange(0, WIDTH, CELL_SIZE),
+            random.randrange(0, HEIGHT, CELL_SIZE)
+        ]
+        while food in snake:
+            food = [
+                random.randrange(0, WIDTH, CELL_SIZE),
+                random.randrange(0, HEIGHT, CELL_SIZE)
+            ]
+    else:
+        # Если не съела, удаляем последний элемент (хвост), чтобы длина оставалась прежней
+        snake.pop()
     
 
 pygame.quit()
