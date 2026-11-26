@@ -73,7 +73,22 @@ while running:
     else:
         # Если не съела, удаляем последний элемент (хвост), чтобы длина оставалась прежней
         snake.pop()
-    
+        
+    # 3. Отрисовка
+    screen.fill((30, 30, 30))
+
+    # Рисуем еду (красный квадратик)
+    pygame.draw.rect(screen, (255, 60, 60), (food[0], food[1], CELL_SIZE - 2, CELL_SIZE - 2))
+
+    # Рисуем змейку (зеленые квадратики)
+    for block in snake:
+        pygame.draw.rect(screen, (60, 200, 60), (block[0], block[1], CELL_SIZE - 2, CELL_SIZE - 2))
+
+    # 4. Обновление экрана
+    score_image = font.render(f"Счет: {score}", True, (255, 255, 255))
+    screen.blit(score_image, (10, 10))
+    pygame.display.flip()
+    clock.tick(FPS)
 
 pygame.quit()
 sys.exit()
