@@ -24,7 +24,7 @@
    cd snake-game
    ```
 
-2. **Установите библиотеку Pygame:**
+2. **Установите библиотеку Pygame-ce:**
    ```bash
    pip install pygame-ce
    ```
