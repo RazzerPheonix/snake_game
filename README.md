@@ -25,7 +25,7 @@
 
 2. **Установите библиотеку Pygame:**
    ```bash
-   pip install pygame
+   pip install pygame-ce
    ```
 
 3. **Запустите игру:**
